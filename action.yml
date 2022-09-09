@@ -47,7 +47,7 @@ runs:
   - uses: actions/checkout@v3
     with:
       fetch-depth: 0
-  - run: $GITHUB_ACTION_PATH/entrypoint.sh
+  - run: $GITHUB_ACTION_PATH/script.sh
     shell: bash
     env:
       REVIEWDOG_VERSION: 'v0.14.1'
