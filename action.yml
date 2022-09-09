@@ -1,6 +1,6 @@
-name: 'TODO: Run <linter-name> with reviewdog'
-description: 'TODO: 🐶 Run <linter-name> with reviewdog on pull requests to improve code review experience.'
-author: 'TODO: <your-name>'
+name: 'Run shodo with reviewdog'
+description: '🐶 Run shodo with reviewdog on pull requests to improve code review experience.'
+author: 'Songmu'
 inputs:
   github_token:
     description: 'GITHUB_TOKEN'
@@ -28,13 +28,40 @@ inputs:
   reviewdog_flags:
     description: 'Additional reviewdog flags'
     default: ''
-  ### Flags for <linter-name> ###
-  locale:
-    description: '-locale flag of misspell. (US/UK)'
+  ### Flags for shodo ###
+  shodo_api_token:
+    description: 'api token'
+    required: true
+  shodo_api_root:
+    description: 'api root'
+    required: true
+  base_commitish:
+    description: 'base commitish'
     default: ''
+  limit:
+    description: 'maximum files'
+    default: '10'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'composite'
+  steps:
+  - uses: actions/checkout@v3
+    with:
+      fetch-depth: 0
+  - run: $GITHUB_ACTION_PATH/entrypoint.sh
+    shell: bash
+    env:
+      REVIEWDOG_VERSION: 'v0.14.1'
+      GITHUB_TOKEN: '${{ inputs.github_token }}'
+      INPUT_WORKDIR: '${{ inputs.workdir }}'
+      INPUT_LEVEL: '${{ inputs.level }}'
+      INPUT_REPORTER: '${{ inputs.reporter }}'
+      INPUT_FILTER_MODE: '${{ inputs.filter_mode }}'
+      INPUT_FAIL_ON_ERROR: '${{ inputs.fail_on_error }}'
+      INPUT_REVIEWDOG_FLAGS: '${{ inputs.reviewdog_flags }}'
+      INPUT_BASE_COMMITISH: '${{ inputs.base_commitish }}'
+      INPUT_LIMIT: '${{ inputs.limit }}'
+      SHODO_API_TOKEN: '${{ inputs.shodo_api_token }}'
+      SHODO_API_ROOT: '${{ inputs.shodo_api_toot }}'
 
 # Ref: https://haya14busa.github.io/github-action-brandings/
 # TODO: update branding if you want.
