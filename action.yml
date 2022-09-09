@@ -29,10 +29,10 @@ inputs:
     description: 'Additional reviewdog flags'
     default: ''
   ### Flags for shodo ###
-  shodo_api_token:
+  api_token:
     description: 'api token'
     required: true
-  shodo_api_root:
+  api_root:
     description: 'api root'
     required: true
   base_commitish:
@@ -60,8 +60,8 @@ runs:
       INPUT_REVIEWDOG_FLAGS: '${{ inputs.reviewdog_flags }}'
       INPUT_BASE_COMMITISH: '${{ inputs.base_commitish }}'
       INPUT_LIMIT: '${{ inputs.limit }}'
-      SHODO_API_TOKEN: '${{ inputs.shodo_api_token }}'
-      SHODO_API_ROOT: '${{ inputs.shodo_api_toot }}'
+      SHODO_API_TOKEN: '${{ inputs.api_token }}'
+      SHODO_API_ROOT: '${{ inputs.api_toot }}'
 
 # Ref: https://haya14busa.github.io/github-action-brandings/
 # TODO: update branding if you want.

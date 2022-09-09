@@ -38,10 +38,10 @@ inputs:
     description: 'Additional reviewdog flags'
     default: ''
   ### Flags for shodo ###
-  shodo_api_token:
+  api_token:
     description: 'api token'
     required: true
-  shodo_api_root:
+  api_root:
     description: 'api root'
     required: true
   base_commitish:
