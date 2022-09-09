@@ -27,7 +27,7 @@ export REVIEWDOG_GITHUB_API_TOKEN="${GITHUB_TOKEN}"
 echo "$files" | xargs goshodo lint -f checkstyle | \
   reviewdog -f="checkstyle" \
       -name="shodo" \
-      -reporter="${INPUT_REPORTER:-github-pr-check}" \
+      -reporter="${INPUT_REPORTER}" \
       -filter-mode="${INPUT_FILTER_MODE}" \
       -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
       -level="${INPUT_LEVEL}" \
