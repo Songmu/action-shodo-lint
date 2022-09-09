@@ -6,7 +6,7 @@ if [[ -z "$INPUT_BASE_COMMITISH" ]]; then
   INPUT_BASE_COMMITISH=$(git remote show origin | grep 'HEAD branch:' | cut -d' ' -f5)
 fi
 
-files=$(git diff "$INPUT_BASE_COMMITISH" --name-only | grep '.md$' | head -"$INPUT_LIMIT")
+files=$(git diff "origin/$INPUT_BASE_COMMITISH" --name-only | grep '.md$' | head -"$INPUT_LIMIT")
 if [[ -z "$files" ]]; then
   exit
 fi
@@ -31,5 +31,5 @@ echo "$files" | xargs goshodo lint -f checkstyle | \
       -filter-mode="${INPUT_FILTER_MODE}" \
       -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
       -level="${INPUT_LEVEL}" \
-      -diff="git diff ${INPUT_BASE_COMMITISH}" \
+      -diff="git diff origin/${INPUT_BASE_COMMITISH}" \
       ${INPUT_REVIEWDOG_FLAGS}

@@ -61,7 +61,7 @@ runs:
       INPUT_BASE_COMMITISH: '${{ inputs.base_commitish }}'
       INPUT_LIMIT: '${{ inputs.limit }}'
       SHODO_API_TOKEN: '${{ inputs.api_token }}'
-      SHODO_API_ROOT: '${{ inputs.api_toot }}'
+      SHODO_API_ROOT: '${{ inputs.api_root }}'
 
 # Ref: https://haya14busa.github.io/github-action-brandings/
 # TODO: update branding if you want.
