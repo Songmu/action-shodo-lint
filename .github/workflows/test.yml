@@ -1,43 +1,15 @@
 name: Test
-on:
-  push:
-    branches:
-      - master
-  pull_request:
+on: [pull_request]
 jobs:
   test-check:
-    name: runner / shodo (github-check)
+    name: runner / shodo
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./
-        with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-check
-          level: info
-
-  test-pr-check:
-    if: github.event_name == 'pull_request'
-    name: runner / shodo (github-pr-check)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./
-        with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-check
-          level: warning
-          workdir: ./testdata/subdir/
-
-  test-pr-review:
-    if: github.event_name == 'pull_request'
-    name: runner / shodo (github-pr-review)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./
-        with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
-          level: error
-          reviewdog_flags: -filter-mode=file -fail-on-error
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - uses: ./
+      with:
+        github_token: ${{ secrets.github_token }}
+        api_token: ${{ secrets.SHODO_API_TOKEN }}
+        api_root: ${{ secrets.SHODO_API_ROOT }}

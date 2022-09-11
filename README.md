@@ -18,16 +18,13 @@ inputs:
   github_token:
     description: 'GITHUB_TOKEN'
     default: '${{ github.token }}'
-  workdir:
-    description: 'Working directory relative to the root directory.'
-    default: '.'
   ### Flags for reviewdog ###
   level:
     description: 'Report level for reviewdog [info,warning,error]'
-    default: 'error'
+    default: 'warning'
   reporter:
-    description: 'Reporter of reviewdog command [github-pr-check,github-check,github-pr-review].'
-    default: 'github-pr-check'
+    description: 'Reporter of reviewdog command [github-pr-check,github-pr-review].'
+    default: 'github-pr-review'
   filter_mode:
     description: |
       Filtering mode for the reviewdog command [added,diff_context,file,nofilter].
@@ -43,21 +40,23 @@ inputs:
     default: ''
   ### Flags for shodo ###
   api_token:
-    description: 'api token'
+    description: 'Shodo API token'
     required: true
   api_root:
-    description: 'api root'
+    description: 'Shodo API root'
     required: true
-  base_commitish:
-    description: 'base commitish'
+  base_branch:
+    description: 'Base branch'
     default: ''
   limit:
-    description: 'maximum files'
+    description: 'Maximum files'
     default: '10'
+  dir:
+    description: 'Directory to be linted relative to the root directory.'
+    default: '.'
 ```
 
 ## Usage
-<!-- TODO: update. replace `template` with the linter name -->
 
 ```yaml
 name: reviewdog
@@ -71,6 +70,8 @@ jobs:
       - uses: Songmu/action-shodo-lint@v1
         with:
           github_token: ${{ secrets.github_token }}
+          api_token: ${{ secrets.SHODO_API_TOKEN }}
+          api_root: 'https://api.shodo.ink/@{your_organization}/{your_project}/'
 ```
 
 ## Development
