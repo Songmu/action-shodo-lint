@@ -7,6 +7,10 @@
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Songmu/action-shodo-lint?logo=github&sort=semver)](https://github.com/Songmu/action-shodo-lint/releases)
 [![action-bumpr supported](https://img.shields.io/badge/bumpr-supported-ff69b4?logo=github&link=https://github.com/haya14busa/action-bumpr)](https://github.com/haya14busa/action-bumpr)
 
+This action uses the SHODO proofreading API to provide suggestions for Japanese documents in the form of a review on a pull request.
+
+<img width="811" alt="スクリーンショット 2022-09-09 23 49 04" src="https://user-images.githubusercontent.com/177122/189533601-b01f9a2a-a488-40ed-b7a0-aafebfed555b.png">
+
 ## Input
 
 ```yaml
