@@ -35,8 +35,8 @@ inputs:
   api_root:
     description: 'api root'
     required: true
-  base_commitish:
-    description: 'base commitish'
+  base_branch:
+    description: 'base branch'
     default: ''
   limit:
     description: 'maximum files'
@@ -47,7 +47,7 @@ runs:
   - uses: actions/checkout@v3
     with:
       fetch-depth: 0
-  - run: $GITHUB_ACTION_PATH/script.sh
+  - run: $GITHUB_ACTION_PATH/action.sh
     shell: bash
     env:
       REVIEWDOG_VERSION: 'v0.14.1'
@@ -58,13 +58,12 @@ runs:
       INPUT_FILTER_MODE: '${{ inputs.filter_mode }}'
       INPUT_FAIL_ON_ERROR: '${{ inputs.fail_on_error }}'
       INPUT_REVIEWDOG_FLAGS: '${{ inputs.reviewdog_flags }}'
-      INPUT_BASE_COMMITISH: '${{ inputs.base_commitish }}'
+      INPUT_BASE_BRANCH: '${{ inputs.base_branch }}'
       INPUT_LIMIT: '${{ inputs.limit }}'
       SHODO_API_TOKEN: '${{ inputs.api_token }}'
       SHODO_API_ROOT: '${{ inputs.api_root }}'
 
 # Ref: https://haya14busa.github.io/github-action-brandings/
-# TODO: update branding if you want.
 branding:
-  icon: 'check'
-  color: 'blue'
+  icon: 'edit-3'
+  color: 'gray-dark'
