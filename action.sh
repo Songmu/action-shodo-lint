@@ -1,12 +1,13 @@
 #!/bin/bash
 set -e
 
-cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" || exit 1
+cd "${GITHUB_WORKSPACE}" || exit 1
+
 if [[ -z "$INPUT_BASE_BRANCH" ]]; then
   INPUT_BASE_BRANCH=$(git remote show origin | grep 'HEAD branch:' | cut -d' ' -f5)
 fi
 
-files=$(git diff "origin/$INPUT_BASE_BRANCH" --name-only --diff-filter=ACMR | grep '.md$' | head -"$INPUT_LIMIT")
+files=$(git diff "origin/$INPUT_BASE_BRANCH" --name-only --diff-filter=ACMR --relative "$INPUT_DIR" | grep '.md$' | head -"$INPUT_LIMIT")
 if [[ -z "$files" ]]; then
   exit
 fi
