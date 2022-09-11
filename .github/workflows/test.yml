@@ -5,6 +5,9 @@ jobs:
     name: runner / shodo
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
     - uses: ./
       with:
         github_token: ${{ secrets.github_token }}
