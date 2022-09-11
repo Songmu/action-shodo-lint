@@ -1,4 +1,4 @@
-# action-template
+# action-shodo-lint
 
 [![Test](https://github.com/Songmu/action-shodo-lint/workflows/Test/badge.svg)](https://github.com/Songmu/action-shodo-lint/actions?query=workflow%3ATest)
 [![reviewdog](https://github.com/Songmu/action-shodo-lint/workflows/reviewdog/badge.svg)](https://github.com/Songmu/action-shodo-lint/actions?query=workflow%3Areviewdog)
@@ -67,11 +67,6 @@ jobs:
       - uses: Songmu/action-shodo-lint@v1
         with:
           github_token: ${{ secrets.github_token }}
-          # Change reviewdog reporter if you need [github-pr-check,github-check,github-pr-review].
-          reporter: github-pr-review
-          # Change reporter level if you need.
-          # GitHub Status Check won't become failure with warning.
-          level: warning
 ```
 
 ## Development
