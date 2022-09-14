@@ -56,19 +56,18 @@ inputs:
 ## Usage
 
 ```yaml
-name: reviewdog
+name: action-shodo-lint
 on: [pull_request]
 jobs:
   shodo:
     name: runner / shodo
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: Songmu/action-shodo-lint@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          api_token: ${{ secrets.SHODO_API_TOKEN }}
-          api_root: 'https://api.shodo.ink/@{your_organization}/{your_project}/'
+    - uses: Songmu/action-shodo-lint@main
+      with:
+        github_token: ${{ secrets.github_token }}
+        api_token: ${{ secrets.SHODO_API_TOKEN }}
+        api_root: 'https://api.shodo.ink/@{your_organization}/{your_project}/'
 ```
 
 ## Development
